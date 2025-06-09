@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Tarefas Adiadas" %}{% endblock %}
+
+{% block content %}
+
+{# Filtro por Categoria #}
+{% include "tarefas/partials/filtro_categoria_ordenacao.html" %}
+
+  <div class="h-100 p-5 bg-light border rounded-3">
+    <h1>{% trans "Tarefas Adiadas" %}</h1>
+
+    <div class="list-group">
+      {% for tarefa in tarefas_adiadas %}
+        {# Linha da lista #}
+        {% include "tarefas/partials/item_tarefa_adiada.html" %}
+        {# Modal de detalhes #}
+        {% include "tarefas/partials/modal_tarefa.html" %}
+      {% empty %}
+        <h3>{% trans "Nenhuma tarefa foi adiada" %}</h3>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block title %}{% trans "Tarefas Pendentes" %}{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-between mb-4">
+    <a href="{% url 'adicionar_tarefa' %}" class="btn btn-success">
+      {% trans "Adicionar Tarefa" %}
+    </a>
+    <a href="{% url 'criar_categoria' %}" class="btn btn-primary">
+      {% trans "Criar Nova Categoria" %}
+    </a>
+  </div>
+  
+  {# Filtro por Categoria #}
+  {% include "tarefas/partials/filtro_categoria_ordenacao.html" %}
+
+  <div class="h-100 p-5 bg-light border rounded-3">
+    <h1>{% trans "Tarefas Pendentes:" %}</h1>
+
+    <div class="list-group">
+      {% for tarefa in tarefas_pendentes %}
+        {# Linha da lista com cor por prioridade #}
+        {% include "tarefas/partials/item_tarefa_pendente.html" %}
+        {# Modal com ações de pendentes #}
+        {% include "tarefas/partials/modal_tarefa_pendente.html" %}
+      {% empty %}
+        <h2>{% trans "Nenhuma tarefa pendente" %}</h2>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

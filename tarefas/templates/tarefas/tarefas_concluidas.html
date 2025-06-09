@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Tarefas Concluídas" %}{% endblock %}
+
+{% block content %}
+
+{# Filtro por Categoria #}
+{% include "tarefas/partials/filtro_categoria_ordenacao.html" %}
+
+  <div class="h-100 p-5 bg-light border rounded-3">
+    <h1>{% trans "Tarefas Concluídas" %}</h1>
+
+    <div class="list-group">
+      {% for tarefa in tarefas_concluidas %}
+        {# Linha da lista (verde) #}
+        {% include "tarefas/partials/item_tarefa_concluida.html" %}
+        {# Modal de detalhes (mesmo partial reutilizado) #}
+        {% include "tarefas/partials/modal_tarefa.html" %}
+      {% empty %}
+        <h2>{% trans "Nenhuma tarefa foi concluída" %}</h2>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
