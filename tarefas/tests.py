@@ -1,4 +1,5 @@
 from django.test import TestCase
+<<<<<<< HEAD
 from datetime import date, timedelta
 from django.urls import reverse
 from .models import Tarefa, Categoria
@@ -72,3 +73,8 @@ class ListasBuscaTests(TestCase):
         url = reverse("tarefas_pendentes_list")  # sem q=
         resp = self.client.get(url)
         self.assertEqual(resp.context["tarefas_pendentes"].count(), 2)
+=======
+
+
+#comment anythin 
+>>>>>>> origin/main
